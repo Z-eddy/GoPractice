@@ -14,6 +14,10 @@ func init(){
 	fmt.Println("initialize...")
 }
 
+func init(){
+	fmt.Println("init 1")
+}
+
 func main() {
 	//自动多线程
 	go log("A:")
