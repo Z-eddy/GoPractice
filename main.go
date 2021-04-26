@@ -10,6 +10,10 @@ func log(msg string){
 	}
 }
 
+func init(){
+	fmt.Println("initialize...")
+}
+
 func main() {
 	//自动多线程
 	go log("A:")
