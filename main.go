@@ -1,23 +1,17 @@
 package main
 
-import "fmt"
-
-func send(a uint32,c chan uint32){
-	var i uint32
-	for i= 0;i!=a;i++ {
-		c <- i
-	}
-
-	close(c)
-}
+import (
+	"fmt"
+	"log"
+	"os"
+	pb "practice/myPackage"
+)
 
 func main() {
-	c:=make(chan uint32,100)
+	fmt.Println(pb.Num0)
+	log.SetOutput(os.Stdout)
+	log.Println("temp",pb.Num0)
 
-	send(20,c)
-
-	for v:=range c{
-		fmt.Println(v)
-	}
+	fmt.Println("finish")
 }
 
