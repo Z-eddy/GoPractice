@@ -1,17 +1,10 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"os"
-	pb "practice/myPackage"
-)
+import "fmt"
 
 func main() {
-	fmt.Println(pb.Num0)
-	log.SetOutput(os.Stdout)
-	log.Println("temp",pb.Num0)
-
-	fmt.Println("finish")
+	func(a int){
+		fmt.Println(a+1)
+	}(5)
 }
 
