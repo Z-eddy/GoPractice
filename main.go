@@ -1,24 +1,34 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	const a,b,c=10,"test",10.8
-	switch a{
-	case 0:fmt.Println("0")
-	case 1:fmt.Println("1")
-	case 10:
-		fmt.Println("my 10")
-		fallthrough
-	case 2:fmt.Println("2")
-	case 3:fmt.Println("3")
+	for i := 0;i!=10;i++{
+		fmt.Println(i)
 	}
 
-	switch{
-	case true:fmt.Println("true")
-	case false:fmt.Println("false")
+	valA:=10
+	for valA>0 {
+		println(valA)
+		valA--
 	}
+
+	strA:=[]string{"stringA","stringB"}
+	for i,val:=range strA{
+		fmt.Printf("index:%d value:%s\n",i,val)
+	}
+
+	arrA:=[]int{1,2,3,4,5,6}
+	for i,val:=range arrA{
+		fmt.Printf("index:%d value:%d\n",i,val)
+	}
+
+	/*
+	i:=0
+	for{
+		fmt.Println(i)
+		i++
+	}
+	 */
 }
 
