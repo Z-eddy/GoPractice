@@ -1,19 +1,31 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-)
+import "fmt"
 
-func divideErr(a,b float64)(float64,error){
-	if b!=0 {
-		return a / b, nil
-	}else{
-		return 0,errors.New("error!!!")
+func sum(a uint32,c chan uint32){
+	var i,total uint32
+	total=0
+	for i= 0;i!=a;i++ {
+		total+=i
 	}
+
+	c <- total
 }
 
 func main() {
-	fmt.Println(divideErr(5,0))
+	var a,b,d uint32
+	a=0
+	b=10
+	d=20
+
+	c:=make(chan uint32)
+
+	go sum(a,c)
+	go sum(b,c)
+	go sum(d,c)
+
+	x,y,z:=<-c,<-c,<-c
+
+	fmt.Println(x,y,z)
 }
 
