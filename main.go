@@ -2,33 +2,17 @@ package main
 
 import "fmt"
 
+func foo(sA string,b int)(int,string){
+	return b+1,sA+"post"
+}
+
+func fooAdd(a,b int)int{
+	return a+b
+}
+
 func main() {
-	for i := 0;i!=10;i++{
-		fmt.Println(i)
-	}
-
-	valA:=10
-	for valA>0 {
-		println(valA)
-		valA--
-	}
-
-	strA:=[]string{"stringA","stringB"}
-	for i,val:=range strA{
-		fmt.Printf("index:%d value:%s\n",i,val)
-	}
-
-	arrA:=[]int{1,2,3,4,5,6}
-	for i,val:=range arrA{
-		fmt.Printf("index:%d value:%d\n",i,val)
-	}
-
-	/*
-	i:=0
-	for{
-		fmt.Println(i)
-		i++
-	}
-	 */
+	a,b:=foo("myTest",9)
+	c:=fooAdd(2,3)
+	fmt.Println(a,b,c)
 }
 
