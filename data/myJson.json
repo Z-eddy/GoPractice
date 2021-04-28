@@ -1,0 +1,14 @@
+[
+  {
+    "id": 0,
+    "name" : "myNameA"
+  },
+  {
+    "id": 1,
+    "name" : "myNameB"
+  },
+  {
+    "id": 2,
+    "name" : "myNameC"
+  }
+]
