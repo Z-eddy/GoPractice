@@ -13,14 +13,14 @@ var (
 
 type decodeData struct {
 	//必须大写名字,否则无法读取
-	MyId int `json:"id"`
+	MyId   int    `json:"id"`
 	MyName string `json:"name"`
 }
 
-func PrintJsonData(){
-	jsonFile:="data/myJson.json"
-	file,err:=os.Open(jsonFile)
-	if err!=nil{
+func PrintJsonData() {
+	jsonFile := "data/myJson.json"
+	file, err := os.Open(jsonFile)
+	if err != nil {
 		log.Fatal("open file error")
 	}
 
@@ -31,7 +31,7 @@ func PrintJsonData(){
 	//json文件读取
 	json.NewDecoder(file).Decode(&tempData)
 
-	for _,v := range tempData {
+	for _, v := range tempData {
 		fmt.Println(v)
 	}
 }
