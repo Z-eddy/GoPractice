@@ -11,6 +11,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", handler)
-	http.ListenAndServe("0.0.0.0:8080", nil)
+	multiplexer := http.NewServeMux()
+	multiplexer.HandleFunc("/", handler)
+	server := http.Server{
+		Addr:    "127.0.0.1:8080",
+		Handler: multiplexer,
+	}
+	server.ListenAndServe()
 }
