@@ -20,11 +20,14 @@ func (theWorld WorldHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	hello := HelloHandler{}
-	//world := WorldHandler{}
+	world := WorldHandler{}
 
 	server := http.Server{
-		Addr:    ":8080",
-		Handler: &hello,
+		Addr: ":8080",
 	}
+
+	http.Handle("/hello", hello)
+	http.Handle("/world", world)
+
 	server.ListenAndServe()
 }
