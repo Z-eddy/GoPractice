@@ -1,22 +1,22 @@
 package main
 
-import "fmt"
-
-type (
-	user struct {
-		name string
-	}
+import (
+	"container/list"
+	"fmt"
 )
 
-func (u user) notify(arg string) {
-	u.name += arg
-	fmt.Println("u", u)
-}
-
 func main() {
-	myUser := new(user)
-	myUser.name = "test"
-	myUser.notify("other")
+	myLi := list.New()
+	myLi.PushBack(99)
+	myLi.PushBack("theTwo")
 
-	fmt.Println("myUser", myUser)
+	for i := 0; i != 10; i++ {
+		myLi.PushBack(i)
+	}
+
+	myLi.Remove(myLi.Back())
+
+	for beg := myLi.Front(); beg != nil; beg = beg.Next() {
+		fmt.Println(beg.Value)
+	}
 }
