@@ -5,33 +5,37 @@ import (
 	"sync"
 )
 
-var rwLocker = sync.RWMutex{}
-var wait = sync.WaitGroup{}
-var gNum = 0
-
-func rFoo(num int) {
-	rwLocker.RLock()
-	defer rwLocker.RUnlock()
-	defer wait.Done()
-	fmt.Println("read", num, gNum)
-	gNum++
-}
+var myMap = sync.Map{}
+var theWait = sync.WaitGroup{}
 
 func wFoo(num int) {
-	rwLocker.Lock()
-	defer rwLocker.Unlock()
-	defer wait.Done()
-	fmt.Println("write", num, gNum)
-	gNum++
+	val := fmt.Sprintf("test %d", num)
+	myMap.Store(num, val)
+	theWait.Done()
 }
 
 func main() {
-	wait.Add(20)
-	for i := 0; i != 10; i++ {
-		go rFoo(i)
-	}
+	theWait.Add(10)
+
 	for i := 0; i != 10; i++ {
 		go wFoo(i)
 	}
-	wait.Wait()
+
+	theWait.Wait()
+
+	//读取单个的值
+	val, _ := myMap.Load(3)
+	fmt.Println(val)
+
+	//遍历
+	myMap.Range(func(key, value interface{}) bool {
+		fmt.Println(key, value)
+
+		//断言实现类型转换
+		theStr := value.(string)
+		str := theStr + " other"
+		fmt.Println(str)
+
+		return true
+	})
 }
